@@ -17,7 +17,7 @@ Biblioteka oferuje prostą klasę `Database` z następującymi możliwościami:
 ### Podstawowe połączenie
 
 ```php
-use PhpMysqlConnection\Database;
+use Naukakodu\PhpMysqlConnection\Database;
 
 try {
     $db = new Database('localhost', 'nazwa_bazy', 'uzytkownik', 'haslo');

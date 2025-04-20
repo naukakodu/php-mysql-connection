@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpMysqlConnection;
+namespace Naukakodu\PhpMysqlConnection;
 
 use Exception;
 use PDO;
