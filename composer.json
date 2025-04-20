@@ -1,0 +1,16 @@
+{
+    "name": "naukakodu/php-mysql-connection",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Naukakodu\\PhpMysqlConnection\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "naukakodu",
+            "email": "kontakt@naukakodu.pl"
+        }
+    ],
+    "require": {}
+}
