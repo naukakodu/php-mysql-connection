@@ -12,5 +12,7 @@
             "email": "kontakt@naukakodu.pl"
         }
     ],
-    "require": {}
+    "require": {
+        "ext-pdo": "*"
+    }
 }
