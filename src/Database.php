@@ -3,6 +3,7 @@
 namespace Naukakodu\PhpMysqlConnection;
 
 use Exception;
+use Naukakodu\PhpMysqlConnection\Query\QueryBuilder;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -71,5 +72,10 @@ class Database {
     {
         $this->query($sql, $params);
         return $this->pdo->lastInsertId();
+    }
+
+    public function getQueryBuilder(): QueryBuilder
+    {
+        return new QueryBuilder($this);
     }
 }
