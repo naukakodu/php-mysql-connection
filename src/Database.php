@@ -5,19 +5,20 @@ namespace Naukakodu\PhpMysqlConnection;
 use Exception;
 use PDO;
 use PDOException;
+use PDOStatement;
 
 class Database {
-    private $host;
-    private $dbName;
-    private $username;
-    private $password;
-    private $charset;
-    private $pdo;
+    private string $host;
+    private string $dbName;
+    private string $username;
+    private string $password;
+    private string $charset;
+    private PDO $pdo;
 
     /**
      * @throws Exception
      */
-    public function __construct($host, $dbName, $username, $password, $charset = 'utf8mb4') {
+    public function __construct(string $host, string $dbName, string $username, string $password, string $charset = 'utf8mb4') {
         $this->host     = $host;
         $this->dbName   = $dbName;
         $this->username = $username;
@@ -30,7 +31,8 @@ class Database {
     /**
      * @throws Exception
      */
-    private function connect() {
+    private function connect(): void
+    {
         $dsn = "mysql:host={$this->host};dbname={$this->dbName};charset={$this->charset}";
 
         try {
@@ -44,17 +46,20 @@ class Database {
         }
     }
 
-    public function getConnection() {
+    public function getConnection(): PDO
+    {
         return $this->pdo;
     }
 
-    public function query($sql, $params = []) {
+    public function query($sql, $params = []): false|PDOStatement
+    {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
         return $stmt;
     }
 
-    public function fetchAll($sql, $params = []) {
+    public function fetchAll($sql, $params = []): array
+    {
         return $this->query($sql, $params)->fetchAll();
     }
 
@@ -62,7 +67,8 @@ class Database {
         return $this->query($sql, $params)->fetch();
     }
 
-    public function insert($sql, $params = []) {
+    public function insert($sql, $params = []): false|string
+    {
         $this->query($sql, $params);
         return $this->pdo->lastInsertId();
     }
