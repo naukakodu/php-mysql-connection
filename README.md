@@ -1,26 +1,26 @@
-## Instalacja przez composer
+## Installation via composer
 
 ```
 composer require php-mysql-connection/database
 ```
 
-## Funkcje
+## Features
 
-Biblioteka oferuje prostą klasę `Database` z następującymi możliwościami:
-- Ustanawianie bezpiecznego połączenia PDO z bazą danych MySQL
-- Wykonywanie zapytań SQL z obsługą prepared statements
-- Pobieranie pojedynczych wierszy lub całych zestawów wyników
-- Obsługa wstawiania danych z możliwością pobrania ostatniego ID
+The library offers a simple `Database` class with the following capabilities:
+- Establishing a secure PDO connection with a MySQL database
+- Executing SQL queries with prepared statements support
+- Retrieving single rows or entire result sets
+- Handling data insertion with the ability to retrieve the last inserted ID
 
-## Przykłady użycia
+## Usage Examples
 
-### Podstawowe połączenie
+### Basic Connection
 
 ```php
 use Naukakodu\PhpMysqlConnection\Database;
 
 try {
-    $db = new Database('localhost', 'nazwa_bazy', 'uzytkownik', 'haslo');
+    $db = new Database('localhost', 'database_name', 'username', 'password');
     
     // ...
 } catch (Exception $e) {
@@ -28,39 +28,39 @@ try {
 }
 ```
 
-### Pobieranie danych
+### Retrieving Data
 ```php
-// Pobieranie wszystkich wierszy
+// Fetching all rows
 $users = $db->fetchAll("SELECT * FROM users WHERE status = ?", ['active']);
 
-// Pobieranie pojedynczego wiersza
+// Fetching a single row
 $user = $db->fetch("SELECT * FROM users WHERE id = ?", [1]);
 ```
 
-### Wstawianie danych
+### Inserting Data
 ```php
 $userId = $db->insert(
     "INSERT INTO users (name, email, created_at) VALUES (?, ?, NOW())",
-    ['Jan Kowalski', 'jan@example.com']
+    ['John Smith', 'john@example.com']
 );
 
-echo "Dodano użytkownika z ID: " . $userId;
+echo "Added user with ID: " . $userId;
 ```
 
-### Wykonywanie innych zapytań
+### Executing Other Queries
 ```php
 $db->query("UPDATE users SET status = ? WHERE id = ?", ['inactive', 5]);
 ```
 
-### Dostęp do obiektu PDO
+### Accessing the PDO Object
 ```php
 $pdo = $db->getConnection();
 // ...
 ```
 
-### Konfiguracja
-Domyślnym zestawem znaków jest `utf8mb4`. Możesz go zmienić podczas inicjalizacji:
+### Configuration
+The default character set is `utf8mb4`. You can change it during initialization:
 
 ```php
-$db = new Database('localhost', 'nazwa_bazy', 'uzytkownik', 'haslo', 'utf8');
+$db = new Database('localhost', 'database_name', 'username', 'password', 'utf8');
 ```
