@@ -4,7 +4,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Naukakodu\\PhpMysqlConnection\\": "src/"
+            "Naukakodu\\PhpMysqlConnection\\": "src/",
+            "Naukakodu\\Tests\\": "tests/"
         }
     },
     "authors": [
@@ -16,5 +17,14 @@
     "require": {
         "php": ">=8.3",
         "ext-pdo": "*"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.8",
+        "mockery/mockery": "^1.6"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     }
 }
