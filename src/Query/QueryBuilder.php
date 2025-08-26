@@ -7,6 +7,8 @@ use Naukakodu\PhpMysqlConnection\Database;
 
 /**
  * @method static where(string $column, string $operator, mixed $value)
+ * @method static join(string $table, string $firstColumn, string $operator, string $secondColumn)
+ * @method static orderBy(string $column, string $direction)
  * @method static limit(int $limit)
  */
 class QueryBuilder
