@@ -6,13 +6,13 @@ composer require php-mysql-connection/database
 
 ## Features
 
-The library offers a simple `Database` class with the following capabilities:
+The library offers a `Database` class with the following capabilities:
 - Establishing a secure PDO connection with a MySQL database
 - Executing SQL queries with prepared statements support
 - Retrieving single rows or entire result sets
 - Handling data insertion with the ability to retrieve the last inserted ID
 
-## Usage Examples
+## Connection Usage Examples
 
 ### Basic Connection
 
@@ -63,4 +63,65 @@ The default character set is `utf8mb4`. You can change it during initialization:
 
 ```php
 $db = new Database('localhost', 'database_name', 'username', 'password', 'utf8');
+```
+
+## QueryBuilder Usage Examples
+
+### Getting QueryBuilder
+```php
+$database = new Database('localhost', 'database_name', 'username', 'password');
+$queryBuilder = $database->getQueryBuilder();
+```
+
+### Available Query Methods
+
+#### Join
+```php
+$queryBuilder
+    ->table('users')
+    ->('tasks', 'users.id', '=', 'tasks.user_id');
+```
+
+#### Limit
+```php
+$queryBuilder
+    ->table('users')
+    ->limit(10);
+```
+
+#### OrderBy Asc
+```php
+$queryBuilder
+    ->table('users')
+    ->orderBy('name'); // ASC
+```
+
+#### OrderBy Desc
+```php
+$queryBuilder
+    ->table('users')
+    ->orderBy('name', 'desc'); // DESC
+```
+
+#### Where
+```php
+$queryBuilder
+    ->table('users')
+    ->where('name', 'John');
+```
+
+### Executing Query
+```php
+$queryBuilder
+    ->table('users')
+    ->where('name', 'John')
+    ->execute(); // Returning the array of rows
+```
+
+### Getting raw SQL
+```php
+$queryBuilder
+    ->table('users')
+    ->where('name', 'John')
+    ->toSql();
 ```
