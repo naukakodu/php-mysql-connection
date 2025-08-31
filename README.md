@@ -1,7 +1,7 @@
 ## Installation via composer
 
 ```
-composer require php-mysql-connection/database
+composer require naukakodu/php-mysql-connection
 ```
 
 ## Features
