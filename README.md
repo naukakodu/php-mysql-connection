@@ -79,7 +79,7 @@ $queryBuilder = $database->getQueryBuilder();
 ```php
 $queryBuilder
     ->table('users')
-    ->('tasks', 'users.id', '=', 'tasks.user_id');
+    ->join('tasks', 'users.id', '=', 'tasks.user_id');
 ```
 
 #### Limit
