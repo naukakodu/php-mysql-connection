@@ -69,8 +69,25 @@ class QueryBuilder
         return trim($sql);
     }
 
+    public function getBindings(): array
+    {
+        $bindings = [];
+
+        foreach ($this->parts as $part) {
+            $partBindings = $part->getBindings();
+            if (! empty($partBindings)) {
+                $bindings = array_merge($bindings, $partBindings);
+            }
+        }
+
+        return $bindings;
+    }
+
     public function execute(): array
     {
-        return $this->database->fetchAll($this->toSql());
+        $sql = $this->toSql();
+        $bindings = $this->getBindings();
+
+        return $this->database->fetchAll($sql, $bindings);
     }
 }

@@ -11,5 +11,10 @@ abstract class QueryPart
         $this->builder = $builder;
     }
 
+    public function getBindings(): array
+    {
+        return [];
+    }
+
     abstract public function toSql(): string;
 }
